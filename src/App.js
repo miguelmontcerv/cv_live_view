@@ -5,7 +5,7 @@ import logo from './assets/logo_sin_fondo.png';
 
 const idZona = new URLSearchParams(window.location.search).get('id_zona');
 
-function LiveView() {
+function App() {
   const [parsedDataPlot, setParsedDataPlot] = useState([]);
   const [Zone_data, setZone_data] = useState(null);
   const [selectedNum, setSelectedNum] = useState(1); // Cambio aquí
@@ -134,4 +134,4 @@ function LiveView() {
   );
 }
 
-export default LiveView;
+export default App;
