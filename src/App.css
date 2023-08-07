@@ -1,38 +1,58 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.LiveView {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #e3f2e1; /* Color de fondo para la página */
+  padding: 20px; /* Añadir un padding para que los elementos no queden pegados al borde */
 }
 
-.App-link {
-  color: #61dafb;
+.logo {
+  width: 200px; /* Ajusta el ancho según el tamaño de tu logo */
+  margin-bottom: 10px; /* Espacio entre el logo y el título */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.data-container {
+  background-color: #f5e3d0; /* Beige */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.data-container h2 {
+  margin-bottom: 5px; /* Espacio entre el título y los datos */
+}
+
+.data-container p {
+  margin: 5px 0; /* Espacio entre cada dato */
+}
+
+.water-container {
+  background-color: #76aded; /* Beige */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.water-container h4 {
+  margin-bottom: 5px; /* Espacio entre el título y los datos */
+}
+
+.water-container p {
+  margin: 5px 0; /* Espacio entre cada dato */
+}
+
+canvas {
+  background-color: #fff; /* Color de fondo para el gráfico */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container {
+  width: 80%; /* Ajusta el ancho del contenedor del gráfico según tu preferencia */
+  max-width: 800px; /* Establece un máximo para el ancho del contenedor */
+  margin: 20px;
 }
