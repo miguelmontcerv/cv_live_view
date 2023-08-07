@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+import './Live_view.css';
 import { Chart } from 'chart.js/auto';
 import logo from './assets/logo_sin_fondo.png';
 
@@ -87,7 +87,7 @@ function App() {
         chart.destroy();
       };
     }
-  }, [parsedDataPlot]);
+  }, [parsedDataPlot, chartRef]);
 
   return (
     <div className="LiveView">
