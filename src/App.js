@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Live_view.css';
+import './App.css';
 import { Chart } from 'chart.js/auto';
 import logo from './assets/logo_sin_fondo.png';
 
