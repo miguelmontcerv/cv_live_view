@@ -9,6 +9,7 @@ function App() {
   const [parsedDataPlot, setParsedDataPlot] = useState([]);
   const [Zone_data, setZone_data] = useState(null);
   const [selectedNum, setSelectedNum] = useState(1); // Cambio aquí
+  const [selectedVariable, setSelectedVariable] = useState("Humedad de la Tierra"); // Cambio aquí
   const chartRef = React.createRef();
 
   useEffect(() => {
@@ -23,8 +24,9 @@ function App() {
         console.error('Error al obtener los datos del área de cultivo:', error);
       });
 
+    console.log("\nHEEEY\t", {selectedVariable})  
     // Realizar la solicitud HTTP a la API para obtener los datos de las mediciones
-    fetch(`https://cloudvitals.azurewebsites.net/api/registry?id_zona=${idZona}&num=${selectedNum}`)
+    fetch(`https://cloudvitals.azurewebsites.net/api/registry?id_zona=${idZona}&num=${selectedNum}&variable=${selectedVariable}`)
       .then((response) => response.json())
       .then((medicionesData) => {
         setParsedDataPlot(medicionesData);
@@ -43,7 +45,7 @@ function App() {
         clearInterval(reloadInterval);
       };
 
-  }, [selectedNum]); // Cambio aquí
+  }, [selectedNum, selectedVariable]); // Cambio aquí
 
   useEffect(() => {
     // Verificar si ya existe un gráfico con el ID 'myChart' y destruirlo si es necesario
@@ -61,7 +63,7 @@ function App() {
           labels: [...Array(parsedDataPlot.length).keys()],
           datasets: [
             {
-              label: 'Humedad en la tierra',
+              label: selectedVariable,
               data: parsedDataPlot,
               borderColor: 'rgba(75, 192, 192, 1)',
               borderWidth: 1,
@@ -81,13 +83,11 @@ function App() {
           },
         },
       });
-
-      // Limpiar el gráfico al desmontar el componente
       return () => {
         chart.destroy();
       };
     }
-  }, [parsedDataPlot, chartRef]);
+  }, [parsedDataPlot, chartRef, selectedVariable]);
 
   return (
     <div className="LiveView">
@@ -110,13 +110,14 @@ function App() {
         </div>
       </div>
     )}
+      
       <div className="dropdown-container">
         <label htmlFor="num-select">Selecciona la cantidad de periodos:  </label>
         <select
           id="num-select"
           value={selectedNum} // Cambio aquí
           onChange={(e) => {
-            setSelectedNum(parseInt(e.target.value)); // Cambio aquí
+            setSelectedNum(parseInt(e.target.value));
           }}
         >
           {[...Array(10).keys()].map((num) => (
@@ -126,6 +127,22 @@ function App() {
           ))}
         </select>
       </div>
+    <br></br>
+    <div className="dropdown-container">
+      <label htmlFor="var-select">Selecciona la variable a visualizar:  </label>
+      <select
+        id="var-select"
+        value={selectedVariable}
+        onChange={(e) => {
+          setSelectedVariable(e.target.value);
+          console.log(selectedVariable);
+        }}
+      >
+        <option value="Humedad de la Tierra">Humedad de la Tierra</option>
+        <option value="Precipitacion de la Zona">Precipitación de la Zona</option>
+        <option value="Temperatura (Celsius)">Temperatura (Celsius)</option>
+      </select>
+    </div>
 
       <div className="chart-container">
         <canvas ref={chartRef} id="myChart" width="400" height="200"></canvas>
