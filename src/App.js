@@ -64,7 +64,7 @@ function App() {
           datasets: [
             {
               label: selectedVariable,
-              data: parsedDataPlot,
+              data: parsedDataPlot.reverse(),
               borderColor: 'rgba(75, 192, 192, 1)',
               borderWidth: 1,
               fill: false,
